@@ -167,7 +167,7 @@
             </div>
         {:else}
             <div class="percent_backoff_inputs">
-                Reps
+                <div>Reps</div>
                 <div class="backoff_input">
                     <select
                         class="backoff_input--cell"
@@ -179,7 +179,7 @@
                         {/each}
                     </select>
                 </div>
-                @
+                <div>@</div>
                 <div class="backoff_input">
                     <select
                         class="backoff_input--cell"
@@ -191,7 +191,7 @@
                         {/each}
                     </select>
                 </div>
-                from
+                <div>from</div>
                 <div class="backoff_input">
                     <select
                         class="backoff_input--cell"
@@ -203,7 +203,7 @@
                         {/each}
                     </select>
                 </div>
-                @
+                <div>@</div>
                 <div class="backoff_input">
                     <select
                         class="backoff_input--cell"
@@ -430,6 +430,43 @@
             .backoff_inputs_title {
                 font-size: 20px;
                 margin-bottom: 12px;
+            }
+        }
+
+        .backoff_tabs_form {
+            .backoff_inputs_title {
+                font-size: 20px;
+            }
+
+            .percent_backoff_inputs {
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                justify-content: space-around;
+
+                .backoff_input {
+                    margin: 0;
+                    margin-top: 8px;
+                }
+            }
+        }
+
+        .outputs_wrapper {
+            margin-top: 8px;
+
+            .backoff_outputs_title {
+                font-size: 20px;
+            }
+            .output_result_wrapper {
+                display: flex;
+                flex-direction: column;
+                align-content: space-around;
+                justify-content: space-evenly;
+                .output_result {
+                    .result {
+                        margin: 8px 0;
+                    }
+                }
             }
         }
     }

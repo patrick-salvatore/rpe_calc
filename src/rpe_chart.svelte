@@ -16,7 +16,7 @@
         return map_keys.map((key) => [
             key,
             rpe_per_one_rep_max(key),
-            context.rpe_chart[key],
+            isNaN(context.rpe_chart[key]) ? 0 : context.rpe_chart[key],
         ])
     }
 </script>
@@ -75,8 +75,6 @@
                 width: 100%;
                 display: table;
 
-                tr {
-                }
                 .rpe_chart_header {
                     border-top: 1.4px solid var(--purple-50);
                     border-bottom: 1.4px solid var(--purple-50);

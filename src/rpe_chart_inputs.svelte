@@ -111,10 +111,9 @@
 
             .rpe_form_cell {
                 width: 100%;
-            }
-
-            .rpe_form_cell:last-of-type {
-                padding-left: 12px;
+                &:last-of-type {
+                    padding-left: 12px;
+                }
             }
         }
 
@@ -194,6 +193,45 @@
             .rpe_inputs_title {
                 font-size: 20px;
                 margin-bottom: 12px;
+            }
+            .rpe_form_cell {
+                flex-direction: column;
+                align-items: baseline;
+
+                .rpe_form_cell--label {
+                    margin-bottom: 4px;
+                }
+
+                &:last-of-type {
+                    margin: 0;
+                }
+            }
+
+            .joined_cells {
+                flex-direction: column;
+                padding: 0;
+
+                .rpe_form_cell {
+                    width: auto;
+                    padding-left: 0;
+
+                    &:last-of-type {
+                        padding-left: 0;
+                    }
+                }
+            }
+
+            .reps_numbers_wrapper {
+                .reps_numbers_title {
+                    margin-bottom: 8px;
+                }
+                .reps_numbers {
+                    padding: 0;
+
+                    .reps_number_btn {
+                        font-size: 14px;
+                    }
+                }
             }
         }
     }
