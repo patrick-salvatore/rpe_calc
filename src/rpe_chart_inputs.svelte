@@ -36,7 +36,7 @@
             bind:value={$rpeContext.weight}
             class="cell"
             min="0"
-            maxlength="3"
+            maxlength="4"
             pattern="[0-9]*"
         />
     </div>

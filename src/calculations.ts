@@ -16,16 +16,20 @@ export const compute_rpe_chart = ({
 }: RpeContext) => {
     const oneRM = compute_1rm({ rep_count, rpe_level, weight })
     const estimated_one_rm =
-        Number(weight_increment) * Math.round(oneRM / Number(weight_increment))
+        weight_increment * Math.floor(oneRM / weight_increment)
 
     return {
         estimated_one_rm,
         rpe_chart: Object.entries(RPE_CHART[rep_count]).reduce(
-            (map, [key, value]: [string, number]) => {
-                map[key] =
-                    Number(weight_increment) *
-                    Math.round((value * oneRM) / 100 / Number(weight_increment))
-                return map
+            (map, [rpe, percentage]: [string, number]) => {
+                const whole_percent = percentage / 100
+                return {
+                    ...map,
+                    [rpe]: Number(
+                        (weight_increment * (whole_percent * oneRM)) /
+                            weight_increment
+                    ).toFixed(1),
+                }
             },
             {}
         ) as RpeChart,
