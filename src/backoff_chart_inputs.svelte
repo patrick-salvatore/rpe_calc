@@ -266,208 +266,178 @@
     </div>
 </div>
 
-<style type="scss">
-    @import './style-guide/media_queries/Iphone.scss';
-
-    .backoff_inputs_form {
-        .backoff_inputs_title {
-            font-size: 28px;
-            margin-bottom: 12px;
-        }
-
-        .joined_cells {
-            display: flex;
-            padding: 8px 0 8px 0;
-
-            .backoff_input {
-                width: 100%;
-            }
-
-            .backoff_input:last-of-type {
-                padding-left: 12px;
-            }
-        }
-
-        .backoff_input {
-            display: flex;
-            align-items: center;
-            margin-bottom: 12px;
-
-            .backoff_input--label {
-                margin-right: 16px;
-                min-width: fit-content;
-            }
-
-            input,
-            select {
-                width: 100%;
-            }
-
-            &:last-of-type() {
-                padding-bottom: 12px;
-            }
-        }
-
-        .info_button_wrapper {
-            button {
-                width: 100%;
-                background-color: var(--purple-50);
-                color: var(--pure-white);
-
-                &:hover {
-                    background-color: var(--purple-50);
-                }
-
-                &.disabled {
-                    background-color: var(--purple-30);
-                    cursor: not-allowed;
-                }
-            }
-        }
+<style>
+    .backoff_inputs_form .backoff_inputs_title {
+        font-size: 28px;
+        margin-bottom: 12px;
     }
 
-    .backoff_tabs_form {
-        .backoff_inputs_title {
-            font-size: 24px;
-            margin-top: 12px;
-            margin-bottom: 12px;
-        }
+    .backoff_inputs_form .joined_cells {
+        display: flex;
+        padding: 8px 0 8px 0;
+    }
+    .backoff_inputs_form .joined_cells .backoff_input {
+        width: 100%;
+    }
+    .backoff_inputs_form .joined_cells .backoff_input:last-of-type {
+        padding-left: 12px;
+    }
 
-        .backoff_tabs_wrapper {
-            width: 100%;
-            list-style: none;
-            display: flex;
-            justify-content: space-evenly;
-            padding: 0;
-            margin-bottom: 24px;
+    .backoff_inputs_form .backoff_input {
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+    }
+    .backoff_inputs_form .backoff_input .backoff_input--label {
+        margin-right: 16px;
+        min-width: fit-content;
+    }
+    .backoff_inputs_form .backoff_input > input,
+    .backoff_inputs_form .backoff_input > select {
+        width: 100%;
+    }
+    .backoff_inputs_form .backoff_input:last-of-type {
+        padding-bottom: 12px;
+    }
 
-            .backoff_tab {
-                display: flex;
-                justify-content: space-evenly;
-                width: 75%;
-                border-top-left-radius: 0.25rem;
-                border-top-right-radius: 0.25rem;
-                border-bottom: 1px solid var(--purple-30);
+    .backoff_inputs_form .info_button_wrapper button {
+        width: 100%;
+        background-color: var(--purple-50);
+        color: var(--pure-white);
+    }
+    .backoff_inputs_form .info_button_wrapper button:hover {
+        background-color: var(--purple-50);
+    }
+    .backoff_inputs_form .info_button_wrapper button .disabled {
+        background-color: var(--purple-30);
+        cursor: not-allowed;
+    }
 
-                &.active {
-                    border-top: 1px solid var(--purple-30);
-                    border-left: 1px solid var(--purple-30);
-                    border-right: 1px solid var(--purple-30);
-                    border-bottom: 1px solid transparent;
-                }
+    .backoff_tabs_form .backoff_inputs_title {
+        font-size: 24px;
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
 
-                &:hover {
-                    &:not(.active) {
-                        border-left: 1px solid var(--purple-10);
-                        border-right: 1px solid var(--purple-10);
-                        border-top: 1px solid var(--purple-10);
-                    }
-                }
-            }
-        }
+    .backoff_tabs_form .backoff_tabs_wrapper {
+        width: 100%;
+        list-style: none;
+        display: flex;
+        justify-content: space-evenly;
+        padding: 0;
+        margin-bottom: 24px;
+    }
 
-        .backoff_input {
-            display: flex;
-            align-items: center;
+    .backoff_tabs_form .backoff_tabs_wrapper .backoff_tab {
+        display: flex;
+        justify-content: space-evenly;
+        width: 75%;
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+        border-bottom: 1px solid var(--purple-30);
+    }
 
-            .backoff_input--label {
-                margin-right: 16px;
-                min-width: fit-content;
-            }
+    .backoff_tabs_form .backoff_tabs_wrapper .backoff_tab.active {
+        border-top: 1px solid var(--purple-30);
+        border-left: 1px solid var(--purple-30);
+        border-right: 1px solid var(--purple-30);
+        border-bottom: 1px solid transparent;
+    }
 
-            select {
-                width: 100%;
-            }
+    .backoff_tabs_form .backoff_tabs_wrapper .backoff_tab:hover:not(.active) {
+        border-left: 1px solid var(--purple-10);
+        border-right: 1px solid var(--purple-10);
+        border-top: 1px solid var(--purple-10);
+    }
 
-            &.weight_increment__wrapper {
-                margin-top: 24px;
-            }
-        }
+    .backoff_tabs_form .backoff_input {
+        display: flex;
+        align-items: center;
+        margin: 8px 0;
+    }
 
-        .joined__cells {
-            display: flex;
-            margin-bottom: 2px;
-            .backoff_input {
-                width: 100%;
-                &:last-of-type {
-                    padding-left: 12px;
-                }
-            }
-        }
+    .backoff_tabs_form .backoff_input .backoff_input--label {
+        margin-right: 16px;
+        min-width: fit-content;
+    }
 
-        .percent_backoff_inputs {
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
+    .backoff_tabs_form .backoff_input select {
+        width: 100%;
+    }
 
-            .backoff_input {
-                margin: 0 45px;
-                width: 125px;
-            }
-        }
+    .backoff_tabs_form .backoff_input .weight_increment__wrapper {
+        margin-top: 24px;
+    }
+
+    .backoff_tabs_form .joined__cells {
+        display: flex;
+        margin-bottom: 2px;
+    }
+    .backoff_tabs_form .joined__cells .backoff_input {
+        width: 100%;
+    }
+    .backoff_tabs_form .joined__cells .backoff_input:last-of-type {
+        padding-left: 12px;
+    }
+
+    .backoff_tabs_form .percent_backoff_inputs {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .backoff_tabs_form .percent_backoff_inputs .backoff_input {
+        margin: 0 45px;
+        width: 125px;
     }
 
     .outputs_wrapper {
         margin: 28px 0;
-
-        .backoff_outputs_title {
-            margin-bottom: 14px;
-        }
-        .output_result_wrapper {
-            display: flex;
-            justify-content: space-evenly;
-            .output_result {
-                .result {
-                    margin-left: 8px;
-                    background-color: #ffff;
-                }
-            }
-        }
+    }
+    .outputs_wrapper .backoff_outputs_title {
+        margin-bottom: 14px;
+    }
+    .outputs_wrapper .output_result_wrapper {
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .outputs_wrapper .output_result_wrapper .output_result .result {
+        margin-left: 8px;
+        background-color: #ffff;
     }
 
-    @include Iphone {
-        .backoff_inputs_form {
-            .backoff_inputs_title {
-                font-size: 20px;
-                margin-bottom: 12px;
-            }
+    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+        .backoff_inputs_form .backoff_inputs_title {
+            font-size: 20px;
+            margin-bottom: 12px;
         }
-
-        .backoff_tabs_form {
-            .backoff_inputs_title {
-                font-size: 20px;
-            }
-
-            .percent_backoff_inputs {
-                display: flex;
-                align-items: center;
-                flex-wrap: wrap;
-                justify-content: space-around;
-
-                .backoff_input {
-                    margin: 0;
-                    margin-top: 8px;
-                }
-            }
+        .backoff_tabs_form .backoff_inputs_title {
+            font-size: 20px;
+        }
+        .backoff_tabs_form .percent_backoff_inputs {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .backoff_tabs_form .percent_backoff_inputs .backoff_input {
+            margin: 0;
+            margin-top: 8px;
         }
 
         .outputs_wrapper {
             margin-top: 8px;
-
-            .backoff_outputs_title {
-                font-size: 20px;
-            }
-            .output_result_wrapper {
-                display: flex;
-                flex-direction: column;
-                align-content: space-around;
-                justify-content: space-evenly;
-                .output_result {
-                    .result {
-                        margin: 8px 0;
-                    }
-                }
-            }
+        }
+        .outputs_wrapper .backoff_outputs_title {
+            font-size: 20px;
+        }
+        .outputs_wrapper .output_result_wrapper {
+            display: flex;
+            flex-direction: column;
+            align-content: space-around;
+            justify-content: space-evenly;
+        }
+        .outputs_wrapper .output_result_wrapper .output_result .result {
+            margin: 8px 0;
         }
     }
 </style>

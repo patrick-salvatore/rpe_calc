@@ -57,43 +57,42 @@
     </div>
 </div>
 
-<style type="scss">
+<style>
     .rpe_chart_output {
         margin-top: 8px;
+    }
 
-        .estimate_one_rm_wrapper {
-            display: flex;
-            justify-content: space-between;
-        }
+    .rpe_chart_output .rpe_chart_wrapper {
+        min-height: 200px;
+    }
 
-        .rpe_chart_wrapper {
-            min-height: 200px;
+    .rpe_chart_output .rpe_chart_wrapper .rpe_chart {
+        table-layout: fixed;
+        border-collapse: collapse;
+        width: 100%;
+        display: table;
+    }
 
-            .rpe_chart {
-                table-layout: fixed;
-                border-collapse: collapse;
-                width: 100%;
-                display: table;
+    .rpe_chart_output .rpe_chart_wrapper .rpe_chart .rpe_chart_header {
+        border-top: 1.4px solid var(--purple-50);
+        border-bottom: 1.4px solid var(--purple-50);
+    }
 
-                .rpe_chart_header {
-                    border-top: 1.4px solid var(--purple-50);
-                    border-bottom: 1.4px solid var(--purple-50);
-                    &--cell {
-                        width: 100%;
-                        padding: 10px;
-                        display: table-cell;
-                        text-align: center;
-                    }
-                }
+    .rpe_chart_output .rpe_chart_wrapper .rpe_chart .rpe_chart_header--cell {
+        width: 100%;
+        padding: 10px;
+        display: table-cell;
+        text-align: center;
+    }
 
-                .rpe_chart_body {
-                    &--cell {
-                        padding: 10px;
-                        display: table-cell;
-                        text-align: center;
-                    }
-                }
-            }
-        }
+    .rpe_chart_output .rpe_chart_wrapper .rpe_chart .rpe_chart_body--cell {
+        padding: 10px;
+        display: table-cell;
+        text-align: center;
+    }
+
+    .rpe_chart_output .estimate_one_rm_wrapper {
+        display: flex;
+        justify-content: space-between;
     }
 </style>

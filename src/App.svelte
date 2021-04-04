@@ -46,7 +46,6 @@
 
 <style type="scss">
     @import './style-guide/index.scss';
-    @import './style-guide/media_queries/Iphone.scss';
 
     * {
         &.dark-theme {
@@ -84,7 +83,7 @@
         }
     }
 
-    @include Iphone {
+    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
         .app_container {
             max-width: none;
             .main_nav {

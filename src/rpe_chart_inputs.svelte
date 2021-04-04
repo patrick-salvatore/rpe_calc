@@ -96,143 +96,134 @@
     </div>
 </div>
 
-<style type="scss">
-    @import './style-guide/media_queries/Iphone.scss';
+<style>
+    /* @import './style-guide/media_queries/Iphone.scss'; */
 
-    .rpe_inputs_form {
-        .rpe_inputs_title {
-            font-size: 24px;
-            margin-bottom: 12px;
-        }
-
-        .joined_cells {
-            display: flex;
-            padding: 8px 0 8px 0;
-
-            .rpe_form_cell {
-                width: 100%;
-                &:last-of-type {
-                    padding-left: 12px;
-                }
-            }
-        }
-
-        .rpe_form_cell {
-            display: flex;
-            align-items: center;
-            margin-bottom: 12px;
-
-            .rpe_form_cell--label {
-                margin-right: 16px;
-                min-width: fit-content;
-            }
-
-            input,
-            select {
-                width: 100%;
-            }
-
-            &:last-of-type() {
-                padding-bottom: 12px;
-            }
-        }
-
-        .reps_numbers_wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-
-            .reps_numbers {
-                display: flex;
-                flex-wrap: wrap;
-                align-items: center;
-                margin: 0 auto;
-
-                .reps_number_btn {
-                    cursor: pointer;
-                    font-size: 18px;
-                    margin: 0 8px;
-                    padding: 12px;
-                    border-radius: 3px;
-                    color: var(--off-white);
-
-                    &:hover {
-                        color: var(--purple-50);
-                    }
-
-                    &.active {
-                        background-color: var(--purple-50);
-                        &:hover {
-                            color: var(--off-white);
-                        }
-                    }
-                }
-            }
-        }
-
-        .info_button_wrapper {
-            button {
-                width: 100%;
-                background-color: var(--purple-50);
-                color: var(--pure-white);
-
-                &:hover {
-                    background-color: var(--purple-50);
-                }
-
-                &.disabled {
-                    background-color: var(--purple-30);
-                    cursor: not-allowed;
-                }
-            }
-        }
+    .rpe_inputs_form .rpe_inputs_title {
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+    .rpe_inputs_form .joined_cells {
+        display: flex;
+        padding: 8px 0 8px 0;
+    }
+    .rpe_inputs_form .joined_cells {
+        width: 100%;
+    }
+    .rpe_inputs_form .joined_cells:last-of-type {
+        padding-left: 12px;
     }
 
-    @include Iphone {
-        .rpe_inputs_form {
-            .rpe_inputs_title {
-                font-size: 20px;
-                margin-bottom: 12px;
-            }
-            .rpe_form_cell {
-                flex-direction: column;
-                align-items: baseline;
+    .rpe_inputs_form .rpe_form_cell {
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+    }
 
-                .rpe_form_cell--label {
-                    margin-bottom: 4px;
-                }
+    .rpe_inputs_form .rpe_form_cell .rpe_form_cell--label {
+        margin-right: 16px;
+        min-width: fit-content;
+    }
 
-                &:last-of-type {
-                    margin: 0;
-                }
-            }
+    .rpe_inputs_form .rpe_form_cell > input,
+    .rpe_inputs_form .rpe_form_cell > select {
+        width: 100%;
+    }
 
-            .joined_cells {
-                flex-direction: column;
-                padding: 0;
+    .rpe_inputs_form .rpe_form_cell .rpe_form_cell--label:last-of-type {
+        padding-bottom: 12px;
+    }
 
-                .rpe_form_cell {
-                    width: auto;
-                    padding-left: 0;
+    .rpe_inputs_form .reps_numbers_wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
 
-                    &:last-of-type {
-                        padding-left: 0;
-                    }
-                }
-            }
+    .rpe_inputs_form .reps_numbers_wrapper .reps_numbers {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        margin: 0 auto;
+    }
 
-            .reps_numbers_wrapper {
-                .reps_numbers_title {
-                    margin-bottom: 8px;
-                }
-                .reps_numbers {
-                    padding: 0;
+    .rpe_inputs_form .reps_numbers_wrapper .reps_numbers .reps_number_btn {
+        cursor: pointer;
+        font-size: 18px;
+        margin: 0 8px;
+        padding: 12px;
+        border-radius: 3px;
+        color: var(--off-white);
+    }
+    .rpe_inputs_form
+        .reps_numbers_wrapper
+        .reps_numbers
+        .reps_number_btn:hover {
+        color: var(--purple-50);
+    }
+    .rpe_inputs_form
+        .reps_numbers_wrapper
+        .reps_numbers
+        .reps_number_btn.active {
+        background-color: var(--purple-50);
+    }
 
-                    .reps_number_btn {
-                        font-size: 14px;
-                    }
-                }
-            }
+    .rpe_inputs_form
+        .reps_numbers_wrapper
+        .reps_numbers
+        .reps_number_btn.active:hover {
+        color: var(--off-white);
+    }
+
+    .rpe_inputs_form .info_button_wrapper > button {
+        width: 100%;
+        background-color: var(--purple-50);
+        color: var(--pure-white);
+    }
+    .rpe_inputs_form .info_button_wrapper > button:hover {
+        background-color: var(--purple-50);
+    }
+    .rpe_inputs_form .info_button_wrapper > button.disabled {
+        background-color: var(--purple-30);
+        cursor: not-allowed;
+    }
+
+    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+        .rpe_inputs_form .rpe_inputs_title {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+        .rpe_inputs_form .rpe_form_cell {
+            flex-direction: column;
+            align-items: baseline;
+        }
+        .rpe_inputs_form .rpe_form_cell .rpe_form_cell--label {
+            margin-bottom: 4px;
+        }
+        .rpe_inputs_form .rpe_form_cell:last-of-type {
+            margin: 0;
+        }
+        .rpe_inputs_form .joined_cells {
+            flex-direction: column;
+            padding: 0;
+        }
+
+        .rpe_inputs_form .joined_cells .rpe_form_cell {
+            width: auto;
+            padding-left: 0;
+        }
+
+        .rpe_inputs_form .joined_cells .rpe_form_cell:last-of-type {
+            padding-left: 0;
+        }
+        .rpe_inputs_form .reps_numbers_wrapper .reps_numbers_title {
+            margin-bottom: 8px;
+        }
+        .rpe_inputs_form .reps_numbers_wrapper .reps_numbers {
+            padding: 0;
+        }
+        .rpe_inputs_form.reps_numbers_wrapper .reps_numbers .reps_number_btn {
+            font-size: 14px;
         }
     }
 </style>
