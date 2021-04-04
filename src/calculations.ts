@@ -2,19 +2,20 @@ import type { RpeContext, RpeChart } from './appTypes'
 import { RPE_CHART } from './constants/rpe_chart'
 
 export const compute_1rm = ({
-    rep_count,
+    rep_count_estimated_one_rm,
     rpe_level,
     weight,
-}: Pick<RpeContext, 'rpe_level' | 'rep_count' | 'weight'>) =>
-    (Number(weight) / RPE_CHART[rep_count][rpe_level]) * 100
+}: Pick<RpeContext, 'rpe_level' | 'rep_count_estimated_one_rm' | 'weight'>) =>
+    (Number(weight) / RPE_CHART[rep_count_estimated_one_rm][rpe_level]) * 100
 
 export const compute_rpe_chart = ({
     rep_count,
+    rep_count_estimated_one_rm,
     rpe_level,
     weight,
     weight_increment,
 }: RpeContext) => {
-    const oneRM = compute_1rm({ rep_count, rpe_level, weight })
+    const oneRM = compute_1rm({ rep_count_estimated_one_rm, rpe_level, weight })
     const estimated_one_rm =
         weight_increment * Math.floor(oneRM / weight_increment)
 
@@ -44,17 +45,21 @@ type BackOffData = {
     target_rpe: any
 }
 export const backoff_set_data = ({
-    rep_count,
     rpe_level,
     weight,
     weight_increment,
+    rep_count_estimated_one_rm,
     percent_basis_reps,
     percent_basis_rpe,
     target_percent,
     target_reps,
     target_rpe,
 }: RpeContext & BackOffData) => {
-    const est_1rm = compute_1rm({ rep_count, rpe_level, weight })
+    const est_1rm = compute_1rm({
+        weight,
+        rpe_level,
+        rep_count_estimated_one_rm,
+    })
 
     const compute_rpe_based = () => {
         const t = (RPE_CHART[target_reps][target_rpe] * est_1rm) / 100

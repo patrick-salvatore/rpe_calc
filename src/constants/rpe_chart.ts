@@ -1,5 +1,7 @@
 export const RPE_LIST = [10, 9.5, 9, 8.5, 8, 7.5, 7, 6.5, 6]
 
+export const REP_COUNT_ARRAY = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+
 export const RPE_CHART = {
     1: {
         10: 100,

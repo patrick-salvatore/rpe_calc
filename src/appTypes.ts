@@ -14,6 +14,7 @@ export type RpeContext = {
     weight: number | null
     rep_count: number
     rpe_level: number
+    rep_count_estimated_one_rm: number
     weight_increment: number
     estimated_one_rm?: number
     rpe_chart?: RpeChart

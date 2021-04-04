@@ -5,6 +5,7 @@ export const defaultRpeContext = {
     weight: null,
     weight_increment: 2.5,
     rep_count: 1,
+    rep_count_estimated_one_rm: 1,
     rpe_level: 8,
     estimated_one_rm: 0,
 }

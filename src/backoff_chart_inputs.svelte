@@ -76,11 +76,12 @@
                 <select
                     class="backoff_input--cell"
                     id="min_increment"
-                    bind:value={$rpeContext.rep_count}
+                    bind:value={$rpeContext.rep_count_estimated_one_rm}
                 >
                     {#each rep_counts_arr as count}
                         <option
-                            selected={$rpeContext.rep_count === count}
+                            selected={$rpeContext.rep_count_estimated_one_rm ===
+                                count}
                             value={count}
                         >
                             {count}
