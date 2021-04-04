@@ -1,22 +1,17 @@
 <script type="ts">
     import { rpeContext } from './providers/form'
     import type { RpeContext } from './appTypes'
+    import { RPE_CHART } from './constants/rpe_chart'
 
-    const format_table_data = (context: RpeContext) => {
-        const map_keys = Object.keys(context.rpe_chart).sort(
+    const format_table_data = ({ rpe_chart, rep_count }: RpeContext) => {
+        const map_keys = Object.keys(rpe_chart).sort(
             (a, b) => Number(b) - Number(a)
         )
-        const rpe_per_one_rep_max = (key) =>
-            context.rpe_chart[key]
-                ? Number(
-                      (context.rpe_chart[key] / context.estimated_one_rm) * 100
-                  ).toFixed(1)
-                : 0
 
         return map_keys.map((key) => [
             key,
-            rpe_per_one_rep_max(key),
-            isNaN(context.rpe_chart[key]) ? 0 : context.rpe_chart[key],
+            RPE_CHART[rep_count][key],
+            isNaN(rpe_chart[key]) ? 0 : rpe_chart[key],
         ])
     }
 </script>
