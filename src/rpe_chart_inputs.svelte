@@ -97,8 +97,6 @@
 </div>
 
 <style>
-    /* @import './style-guide/media_queries/Iphone.scss'; */
-
     .rpe_inputs_form .rpe_inputs_title {
         font-size: 24px;
         margin-bottom: 12px;
@@ -110,7 +108,10 @@
     .rpe_inputs_form .joined_cells {
         width: 100%;
     }
-    .rpe_inputs_form .joined_cells:last-of-type {
+    .rpe_inputs_form .joined_cells .rpe_form_cell {
+        width: 100%;
+    }
+    .rpe_inputs_form .joined_cells .rpe_form_cell:last-of-type {
         padding-left: 12px;
     }
 
