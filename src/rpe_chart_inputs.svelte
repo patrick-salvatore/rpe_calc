@@ -1,7 +1,7 @@
 <script type="ts">
     import { rpeContext, defaultRpeContext } from './providers/form'
     import { compute_rpe_chart } from './calculations'
-    import { REP_COUNT_ARRAY, RPE_LIST } from './constants/rpe_chart'
+    import { REP_COUNT_ARRAY, RPE_LIST, WEIGHT_INC_ARRAY } from './constants'
 
     $: watched = {
         weight: Number($rpeContext.weight),
@@ -35,20 +35,23 @@
         />
     </div>
     <div class="joined_cells">
-        <div class="rpe_form_cell">
+        <div class="rpe_form_cell weight_inc__wrapper">
             <label class="rpe_form_cell--label" for="min_increment"
                 >Minimum weight increment</label
             >
-            <select
-                class="rpe_form_cell--cell"
-                id="min_increment"
-                bind:value={$rpeContext.weight_increment}
-            >
-                <option value=".5">.5</option>
-                <option value="1">1</option>
-                <option value="2.5" selected={true}>2.5</option>
-                <option value="5">5</option>
-            </select>
+            <div class="reps_number_btn__wrapper">
+                {#each WEIGHT_INC_ARRAY as inc}
+                    <span
+                        class="reps_number_btn"
+                        class:active={$rpeContext.weight_increment === inc}
+                        on:click={() => {
+                            $rpeContext.weight_increment = inc
+                        }}
+                    >
+                        {inc}
+                    </span>
+                {/each}
+            </div>
         </div>
         <div class="rpe_form_cell">
             <label class="rpe_form_cell--label" for="rpe">Reps</label>
@@ -94,7 +97,6 @@
         font-size: 24px;
         margin-bottom: 12px;
     }
-
     .rpe_inputs_form .joined_cells {
         display: flex;
         padding: 8px 0 8px 0;
@@ -105,6 +107,32 @@
     .rpe_inputs_form .joined_cells .rpe_form_cell {
         width: 100%;
         padding-left: 12px;
+    }
+    .rpe_inputs_form .joined_cells .reps_number_btn__wrapper .reps_number_btn {
+        cursor: pointer;
+        font-size: 18px;
+        margin: 0 8px;
+        padding: 12px;
+        border-radius: 3px;
+        color: var(--off-white);
+    }
+    .rpe_inputs_form
+        .joined_cells
+        .reps_number_btn__wrapper
+        .reps_number_btn:hover {
+        color: var(--purple-50);
+    }
+    .rpe_inputs_form
+        .joined_cells
+        .reps_number_btn__wrapper
+        .reps_number_btn.active {
+        background-color: var(--purple-50);
+    }
+    .rpe_inputs_form
+        .joined_cells
+        .reps_number_btn__wrapper
+        .reps_number_btn.active:hover {
+        color: var(--off-white);
     }
     .rpe_inputs_form .joined_cells .rpe_form_cell:first-of-type {
         padding-left: 0;
@@ -123,7 +151,6 @@
     .rpe_inputs_form .rpe_form_cell > select {
         width: 100%;
     }
-
     .rpe_inputs_form .info_button_wrapper > button {
         width: 100%;
         background-color: var(--purple-50);
@@ -147,7 +174,7 @@
             align-items: baseline;
         }
         .rpe_inputs_form .rpe_form_cell .rpe_form_cell--label {
-            margin-bottom: 4px;
+            margin-bottom: 8px;
         }
         .rpe_inputs_form .rpe_form_cell:last-of-type {
             margin: 0;
@@ -165,6 +192,15 @@
         .rpe_inputs_form .joined_cells .rpe_form_cell:last-of-type {
             padding-left: 0;
             margin-bottom: 8px;
+        }
+        .rpe_inputs_form
+            .joined_cells
+            .reps_number_btn__wrapper
+            .reps_number_btn {
+            padding: 8px;
+        }
+        .rpe_inputs_form .joined_cells .reps_number_btn__wrapper {
+            display: flex;
         }
     }
 </style>

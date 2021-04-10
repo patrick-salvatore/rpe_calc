@@ -1,5 +1,5 @@
 import type { RpeContext, RpeChart } from './appTypes'
-import { RPE_CHART } from './constants/rpe_chart'
+import { RPE_CHART } from './constants'
 
 export const compute_1rm = ({
     rep_count_estimated_one_rm,

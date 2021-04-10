@@ -4,9 +4,9 @@
         defaultBackoffPercent,
         defaultBackoffRPE,
     } from './providers/form'
-    import { backoff_percents } from './constants/backoff_sets'
+    import { backoff_percents, WEIGHT_INC_ARRAY } from './constants'
     import { backoff_set_data } from './calculations'
-    import { RPE_LIST } from './constants/rpe_chart'
+    import { RPE_LIST } from './constants'
 
     const rep_counts_arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
@@ -38,7 +38,6 @@
             }
 
             if (active_tab === 'percent_backoff') {
-                console.log(percentBasedInputs)
                 output_fields = backoff_set_data({
                     ...$rpeContext,
                     weight_increment: percentBasedInputs.weight_increment,
@@ -229,7 +228,7 @@
                     ? percentBasedInputs.weight_increment
                     : rpeBasedInputs.weight_increment}
             >
-                {#each [0.5, 1, 2.5, 5] as inc}
+                {#each WEIGHT_INC_ARRAY as inc}
                     <option
                         value={inc}
                         selected={(active_tab === 'percent_backoff'
@@ -420,6 +419,10 @@
             flex-wrap: wrap;
             justify-content: space-around;
         }
+        .backoff_inputs_form .backoff_input:last-of-type {
+            padding: 0;
+        }
+
         .backoff_tabs_form .percent_backoff_inputs .backoff_input {
             margin: 0;
             margin-top: 8px;

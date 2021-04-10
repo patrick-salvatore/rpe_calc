@@ -1,7 +1,7 @@
 <script type="ts">
     import { rpeContext } from './providers/form'
     import type { RpeContext } from './appTypes'
-    import { RPE_CHART, REP_COUNT_ARRAY } from './constants/rpe_chart'
+    import { RPE_CHART, REP_COUNT_ARRAY } from './constants'
 
     const format_table_data = ({ rpe_chart, rep_count }: RpeContext) => {
         const map_keys = Object.keys(rpe_chart).sort(
