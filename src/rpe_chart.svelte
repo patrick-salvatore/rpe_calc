@@ -76,9 +76,10 @@
         <table class="rpe_chart">
             <thead class="rpe_chart_header">
                 <tr>
-                    <th class="rpe_chart_header--cell">Barbell</th>
+                    <th class="rpe_chart_header--cell">Barbell (kg)</th>
                     <th class="rpe_chart_header--cell">RPE</th>
-                    <th class="rpe_chart_header--cell">% of 1rm</th>
+                    <th class="rpe_chart_header--cell cell-percent">% of 1rm</th
+                    >
                     <th class="rpe_chart_header--cell">Load</th>
                 </tr>
             </thead>
@@ -92,7 +93,7 @@
                                 /></td
                             >
                             <td class="rpe_chart_body--cell">{RPE}</td>
-                            <td class="rpe_chart_body--cell"
+                            <td class="rpe_chart_body--cell cell-percent"
                                 >{percentOfOneRm}%</td
                             >
                             <td class="rpe_chart_body--cell">{load}</td>
@@ -209,9 +210,18 @@
         .rpe_chart_output .reps_numbers_wrapper .reps_numbers .reps_number_btn {
             margin: 0;
         }
-        .rpe_chart_output .rpe_chart_wrapper .rpe_chart .rpe_chart_body--cell {
-            padding-right: 0;
-            padding-left: 0;
+        .rpe_chart_output
+            .rpe_chart_wrapper
+            .rpe_chart
+            .rpe_chart_body--cell.cell-percent {
+            display: none;
+        }
+        .rpe_chart_output
+            .rpe_chart_wrapper
+            .rpe_chart
+            .rpe_chart_header
+            .rpe_chart_header--cell.cell-percent {
+            display: none;
         }
         /* saving this just in case i need it */
         /* .rpe_chart_output .estimate_one_rm_wrapper {

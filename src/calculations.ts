@@ -102,10 +102,9 @@ const recur_gather_plate = (plate, weight, count = 0) => {
     return recur_gather_plate(plate, weight - plate, (count += 1))
 }
 
-const hash = {}
-export const calculate_kilo_plate = (load: number) => {
-    const load_number = Number(load)
+export const calculate_kilo_plate = (load: string): any[][] => {
     const BARBELL = 20
+    const load_number = Number(load)
     const list: { number_of_plates: number; type: ColorOfPlates }[] = []
     let ticker = 0
     let weight_left = (load_number - BARBELL) / 2
@@ -119,25 +118,13 @@ export const calculate_kilo_plate = (load: number) => {
 
         let num = recur_gather_plate(weight, weight_left)
         list.push({ number_of_plates: num, type })
-        // debugger
-
         weight_left -= num * weight
         ticker++
     }
 
     return list
-        .filter((obj) => {
-            const [[, val]] = Object.entries(obj)
-            return val
-        })
-        .map(({ number_of_plates, type }) => {
-            let step = number_of_plates
-            const arr = []
-
-            while (step) {
-                arr.push(PLATES_MAP[type])
-                step--
-            }
-            return arr
-        })
+        .filter((obj) => obj.number_of_plates > 0)
+        .map(({ number_of_plates, type }) =>
+            new Array(number_of_plates).fill(PLATES_MAP[type])
+        )
 }
