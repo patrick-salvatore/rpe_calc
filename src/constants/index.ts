@@ -1,3 +1,5 @@
+import { ColorOfPlates } from '../appTypes'
+
 export const RPE_LIST = [10, 9.5, 9, 8.5, 8, 7.5, 7, 6.5, 6]
 
 export const REP_COUNT_ARRAY = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
@@ -141,3 +143,22 @@ export const RPE_CHART = {
 
 export const backoff_percents = (n = 1, stack = [], stop = 41) =>
     n === stop ? stack : backoff_percents(n + 1, [...stack, n])
+
+export const PLATES_MAP: {
+    [key: string]: {
+        type: ColorOfPlates
+        weight: number
+        className: string
+    }
+} = {
+    RED: { type: 'RED', weight: 25, className: 'RED_PLATE' },
+    BLUE: { type: 'BLUE', weight: 20, className: 'BLUE_PLATE' },
+    YELLOW: { type: 'YELLOW', weight: 15, className: 'YELLOW_PLATE' },
+    GREEN: { type: 'GREEN', weight: 10, className: 'GREEN_PLATE' },
+    SM_WHITE: { type: 'SM_WHITE', weight: 5, className: 'SM_WHITE_PLATE' },
+    SM_RED: { type: 'SM_RED', weight: 2.5, className: 'SM_RED_PLATE' },
+    SM_BLUE: { type: 'SM_BLUE', weight: 2, className: 'SM_BLUE_PLATE' },
+    SM_YELLOW: { type: 'SM_YELLOW', weight: 1.5, className: 'SM_YELLOW_PLATE' },
+    SM_GREEN: { type: 'SM_GREEN', weight: 1, className: 'SM_GREEN_PLATE' },
+    SM_MINI: { type: 'SM_MINI', weight: 0.5, className: 'SM_MINI_PLATE' },
+}

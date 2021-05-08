@@ -1,5 +1,5 @@
-import type { RpeContext, RpeChart } from './appTypes'
-import { RPE_CHART } from './constants'
+import type { RpeContext, RpeChart, ColorOfPlates } from './appTypes'
+import { RPE_CHART, PLATES_MAP } from './constants'
 
 export const compute_1rm = ({
     rep_count_estimated_one_rm,
@@ -23,13 +23,16 @@ export const compute_rpe_chart = ({
         estimated_one_rm,
         rpe_chart: Object.entries(RPE_CHART[rep_count]).reduce(
             (map, [rpe, percentage]: [string, number]) => {
-                const whole_percent = percentage / 100
+                const dec_percent = Number(Number(percentage / 100).toFixed(3))
+
                 return {
                     ...map,
-                    [rpe]: Number(
-                        (weight_increment * (whole_percent * oneRM)) /
-                            weight_increment
-                    ).toFixed(1),
+                    [rpe]: Math.floor(
+                        Number(
+                            (weight_increment * (dec_percent * oneRM)) /
+                                weight_increment
+                        )
+                    ),
                 }
             },
             {}
@@ -90,4 +93,51 @@ export const backoff_set_data = ({
     }
 
     return { compute_rpe_based, percent_backoff }
+}
+
+const recur_gather_plate = (plate, weight, count = 0) => {
+    if (weight - plate < 0) {
+        return count
+    }
+    return recur_gather_plate(plate, weight - plate, (count += 1))
+}
+
+const hash = {}
+export const calculate_kilo_plate = (load: number) => {
+    const load_number = Number(load)
+    const BARBELL = 20
+    const list: { number_of_plates: number; type: ColorOfPlates }[] = []
+    let ticker = 0
+    let weight_left = (load_number - BARBELL) / 2
+
+    if (!load_number) {
+        return [[]]
+    }
+
+    while (ticker < Object.keys(PLATES_MAP).length) {
+        const { type, weight } = PLATES_MAP[Object.keys(PLATES_MAP)[ticker]]
+
+        let num = recur_gather_plate(weight, weight_left)
+        list.push({ number_of_plates: num, type })
+        // debugger
+
+        weight_left -= num * weight
+        ticker++
+    }
+
+    return list
+        .filter((obj) => {
+            const [[, val]] = Object.entries(obj)
+            return val
+        })
+        .map(({ number_of_plates, type }) => {
+            let step = number_of_plates
+            const arr = []
+
+            while (step) {
+                arr.push(PLATES_MAP[type])
+                step--
+            }
+            return arr
+        })
 }

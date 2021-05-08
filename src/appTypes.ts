@@ -35,3 +35,15 @@ export type BackoffContext = {
         weight_increment: number
     }
 }
+
+export type ColorOfPlates =
+    | 'RED'
+    | 'BLUE'
+    | 'YELLOW'
+    | 'GREEN'
+    | 'SM_WHITE'
+    | 'SM_RED'
+    | 'SM_BLUE'
+    | 'SM_YELLOW'
+    | 'SM_GREEN'
+    | 'SM_MINI'

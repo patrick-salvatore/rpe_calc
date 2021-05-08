@@ -57,7 +57,7 @@
     .app_container {
         min-height: 100vh;
         padding: 1em;
-        padding: 32px;
+        padding: 24px;
     }
 
     .main_nav {
