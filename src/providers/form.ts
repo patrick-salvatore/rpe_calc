@@ -1,8 +1,9 @@
 import type { RpeContext } from '../appTypes'
 import { writable, Writable } from 'svelte/store'
 
-export const defaultRpeContext = {
+export const defaultRpeContext: RpeContext = {
     weight: null,
+    unit: 'kg',
     weight_increment: 1,
     rep_count: 1,
     rep_count_estimated_one_rm: 1,

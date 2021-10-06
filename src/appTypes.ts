@@ -10,7 +10,10 @@ export type RpeChart = {
     6: number
 }
 
+export type TWeightUnit = 'kg' | 'lb'
+
 export type RpeContext = {
+    unit: TWeightUnit
     weight: number | null
     rep_count: number
     rpe_level: number

@@ -1,5 +1,10 @@
-import type { RpeContext, RpeChart, ColorOfPlates } from './appTypes'
-import { RPE_CHART, PLATES_MAP } from './constants'
+import type {
+    RpeContext,
+    RpeChart,
+    ColorOfPlates,
+    TWeightUnit,
+} from './appTypes'
+import { RPE_CHART, KILO_PLATES_MAP, POUND_PLATES_MAP } from './constants'
 
 export const compute_1rm = ({
     rep_count_estimated_one_rm,
@@ -102,8 +107,12 @@ const recur_gather_plate = (plate, weight, count = 0) => {
     return recur_gather_plate(plate, weight - plate, (count += 1))
 }
 
-export const calculate_kilo_plate = (load: string): any[][] => {
-    const BARBELL = 20
+export const calculate_plate_scheme = (
+    load: string,
+    unit: TWeightUnit
+): any[][] => {
+    const PLATES_MAP = unit === 'kg' ? KILO_PLATES_MAP : POUND_PLATES_MAP
+    const BARBELL = unit === 'kg' ? 20 : 45
     const load_number = Number(load)
     const list: { number_of_plates: number; type: ColorOfPlates }[] = []
     let ticker = 0
