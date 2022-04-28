@@ -92,12 +92,12 @@
       <thead class="rpe_chart_header">
         <tr>
           <th class="rpe_chart_header--cell">
-            Barbell ({$rpeContext.unit})
+            Barbell ({table_weight_unit})
           </th>
           <th class="rpe_chart_header--cell">RPE</th>
           <th class="rpe_chart_header--cell cell-percent"> % of 1rm </th>
           <th class="rpe_chart_header--cell">
-            Load ({$rpeContext.unit})
+            Load ({table_weight_unit})
           </th>
         </tr>
       </thead>
