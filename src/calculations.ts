@@ -1,139 +1,134 @@
 import type {
-    RpeContext,
-    RpeChart,
-    ColorOfPlates,
-    TWeightUnit,
-} from './appTypes'
-import { RPE_CHART, KILO_PLATES_MAP, POUND_PLATES_MAP } from './constants'
+  ColorOfPlates,
+  RpeChart,
+  RpeContext,
+  TWeightUnit,
+} from "./appTypes";
+import { KILO_PLATES_MAP, POUND_PLATES_MAP, RPE_CHART } from "./constants";
 
 export const compute_1rm = ({
-    rep_count_estimated_one_rm,
-    rpe_level,
-    weight,
-}: Pick<RpeContext, 'rpe_level' | 'rep_count_estimated_one_rm' | 'weight'>) =>
-    (Number(weight) / RPE_CHART[rep_count_estimated_one_rm][rpe_level]) * 100
+  rep_count_estimated_one_rm,
+  rpe_level,
+  weight,
+}: Pick<RpeContext, "rpe_level" | "rep_count_estimated_one_rm" | "weight">) =>
+  (Number(weight) / RPE_CHART[rep_count_estimated_one_rm][rpe_level]) * 100;
 
 export const compute_rpe_chart = ({
-    rep_count,
-    rep_count_estimated_one_rm,
-    rpe_level,
-    weight,
-    weight_increment,
+  rep_count,
+  rep_count_estimated_one_rm,
+  rpe_level,
+  weight,
+  weight_increment,
 }: RpeContext) => {
-    const oneRM = compute_1rm({ rep_count_estimated_one_rm, rpe_level, weight })
-    const estimated_one_rm =
-        weight_increment * Math.floor(oneRM / weight_increment)
+  const oneRM = compute_1rm({ rep_count_estimated_one_rm, rpe_level, weight });
+  const estimated_one_rm =
+    weight_increment * Math.floor(oneRM / weight_increment);
 
-    return {
-        estimated_one_rm,
-        rpe_chart: Object.entries(RPE_CHART[rep_count]).reduce(
-            (map, [rpe, percentage]: [string, number]) => {
-                const dec_percent = Number(Number(percentage / 100).toFixed(3))
-
-                return {
-                    ...map,
-                    [rpe]: Math.floor(
-                        Number(
-                            (weight_increment * (dec_percent * oneRM)) /
-                                weight_increment
-                        )
-                    ),
-                }
-            },
-            {}
-        ) as RpeChart,
-    }
-}
+  return {
+    estimated_one_rm,
+    rpe_chart: Object.entries(RPE_CHART[rep_count]).reduce(
+      (map, [rpe, percentage]: [string, number]) => ({
+        ...map,
+        [rpe]: Math.floor(
+          Number(
+            (weight_increment *
+              (Number(Number(percentage / 100).toFixed(3)) * oneRM)) /
+              weight_increment
+          )
+        ),
+      }),
+      {}
+    ) as RpeChart,
+  };
+};
 
 type BackOffData = {
-    percent_basis_reps: any
-    percent_basis_rpe: any
-    target_percent: any
-    target_reps: any
-    target_rpe: any
-}
+  percent_basis_reps: any;
+  percent_basis_rpe: any;
+  target_percent: any;
+  target_reps: any;
+  target_rpe: any;
+};
 export const backoff_set_data = ({
-    rpe_level,
-    weight,
-    weight_increment,
-    rep_count_estimated_one_rm,
-    percent_basis_reps,
-    percent_basis_rpe,
-    target_percent,
-    target_reps,
-    target_rpe,
+  rpe_level,
+  weight,
+  weight_increment,
+  rep_count_estimated_one_rm,
+  percent_basis_reps,
+  percent_basis_rpe,
+  target_percent,
+  target_reps,
+  target_rpe,
 }: RpeContext & BackOffData) => {
-    const est_1rm = compute_1rm({
-        weight,
-        rpe_level,
-        rep_count_estimated_one_rm,
-    })
+  const est_1rm = compute_1rm({
+    weight,
+    rpe_level,
+    rep_count_estimated_one_rm,
+  });
 
-    const compute_rpe_based = () => {
-        const t = (RPE_CHART[target_reps][target_rpe] * est_1rm) / 100
-        const next_set_weight =
-            weight_increment * Math.round(t / weight_increment)
-        const e1rm_output =
-            weight_increment * Math.round(est_1rm / weight_increment)
+  const compute_rpe_based = () => {
+    const t = (RPE_CHART[target_reps][target_rpe] * est_1rm) / 100;
+    const next_set_weight = weight_increment * Math.round(t / weight_increment);
+    const e1rm_output =
+      weight_increment * Math.round(est_1rm / weight_increment);
 
-        if ([e1rm_output, next_set_weight].every((n) => !isNaN(n))) {
-            return { e1rm_output, next_set_weight }
-        }
-        return { e1rm_output: 0, next_set_weight: 0 }
+    if ([e1rm_output, next_set_weight].every((n) => !isNaN(n))) {
+      return { e1rm_output, next_set_weight };
     }
+    return { e1rm_output: 0, next_set_weight: 0 };
+  };
 
-    const percent_backoff = () => {
-        const t =
-            ((100 - target_percent) / 100) *
-            ((RPE_CHART[percent_basis_reps][percent_basis_rpe] * est_1rm) / 100)
-        const e1rm_output =
-            weight_increment * Math.round(est_1rm / weight_increment)
-        const next_set_weight =
-            weight_increment * Math.round(t / weight_increment)
+  const percent_backoff = () => {
+    const t =
+      ((100 - target_percent) / 100) *
+      ((RPE_CHART[percent_basis_reps][percent_basis_rpe] * est_1rm) / 100);
+    const e1rm_output =
+      weight_increment * Math.round(est_1rm / weight_increment);
+    const next_set_weight = weight_increment * Math.round(t / weight_increment);
 
-        if ([e1rm_output, next_set_weight].every((n) => !isNaN(n))) {
-            return { e1rm_output, next_set_weight }
-        }
-        return { e1rm_output: 0, next_set_weight: 0 }
+    if ([e1rm_output, next_set_weight].every((n) => !isNaN(n))) {
+      return { e1rm_output, next_set_weight };
     }
+    return { e1rm_output: 0, next_set_weight: 0 };
+  };
 
-    return { compute_rpe_based, percent_backoff }
-}
+  return { compute_rpe_based, percent_backoff };
+};
 
 const recur_gather_plate = (plate, weight, count = 0) => {
-    if (weight - plate < 0) {
-        return count
-    }
-    return recur_gather_plate(plate, weight - plate, (count += 1))
-}
+  if (weight - plate < 0) {
+    return count;
+  }
+  return recur_gather_plate(plate, weight - plate, (count += 1));
+};
 
 export const calculate_plate_scheme = (
-    load: string,
-    unit: TWeightUnit
+  load: string,
+  unit: TWeightUnit
 ): any[][] => {
-    const PLATES_MAP = unit === 'kg' ? KILO_PLATES_MAP : POUND_PLATES_MAP
-    const BARBELL = unit === 'kg' ? 20 : 45
-    const load_number = Number(load)
-    const list: { number_of_plates: number; type: ColorOfPlates }[] = []
-    let ticker = 0
-    let weight_left = (load_number - BARBELL) / 2
+  const PLATES_MAP = unit === "kg" ? KILO_PLATES_MAP : POUND_PLATES_MAP;
+  const BARBELL = unit === "kg" ? 20 : 45;
+  const load_number = Number(load);
+  const list: { number_of_plates: number; type: ColorOfPlates }[] = [];
+  let ticker = 0;
+  let weight_left = (load_number - BARBELL) / 2;
 
-    if (!load_number) {
-        return [[]]
-    }
+  if (!load_number) {
+    return [[]];
+  }
 
-    while (ticker < Object.keys(PLATES_MAP).length) {
-        const { type, weight } = PLATES_MAP[Object.keys(PLATES_MAP)[ticker]]
+  while (ticker < Object.keys(PLATES_MAP).length) {
+    const { type, weight } = PLATES_MAP[Object.keys(PLATES_MAP)[ticker]];
 
-        let num = recur_gather_plate(weight, weight_left)
-        list.push({ number_of_plates: num, type })
-        weight_left -= num * weight
-        ticker++
-    }
+    let num = recur_gather_plate(weight, weight_left);
+    list.push({ number_of_plates: num, type });
+    weight_left -= num * weight;
+    ticker++;
+  }
 
-    return list
-        .filter((obj) => obj.number_of_plates > 0)
-        .map(({ number_of_plates, type }) =>
-            new Array(number_of_plates).fill(PLATES_MAP[type])
-        )
-}
+  return list
+    .filter((obj) => obj.number_of_plates > 0)
+    .map(({ number_of_plates, type }) =>
+      new Array(number_of_plates).fill(PLATES_MAP[type])
+    );
+};

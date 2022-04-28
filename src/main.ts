@@ -1,5 +1,5 @@
-import App from './App.svelte'
+import App from "./App.svelte";
 
 export default new App({
-    target: document.getElementById('app_root'),
-})
+  target: document.getElementById("app_root"),
+});
