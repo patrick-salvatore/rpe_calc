@@ -1,11 +1,11 @@
-<script type="ts">
+<script lang="ts">
   import { calculate_plate_scheme, compute_rpe_chart } from "./calculations";
 
   import { rpeContext } from "./providers/form";
   import { RPE_CHART, REP_COUNT_ARRAY } from "./constants";
   import Barbell from "./barbell.svelte";
 
-  import type { RpeContext, RpeChart } from "./appTypes";
+  import type { RpeContext, RpeChart } from "./types";
 
   function format_table_data(
     rpe_chart: RpeContext["rpe_chart"],
@@ -62,28 +62,34 @@
 <div class="rpe_chart_output">
   <div class="estimate_one_rm_wrapper">
     <h2 class="one_rm_title">Estimated 1RM</h2>
-    {#if table_estimated_one_rm}
-      <h2 class="one_rm">
-        {table_estimated_one_rm}
-        <span style="cursor:pointer" on:click={toggle_table_unit}
-          >{table_weight_unit}</span
+    <div class="one_rm">
+      {#if table_estimated_one_rm}
+        <h2>
+          {table_estimated_one_rm}
+        </h2>
+        <button
+          class="one_rm_btn"
+          style="cursor:pointer"
+          on:click={toggle_table_unit}
         >
-      </h2>
-    {:else}
-      <h2 class="one_rm">__</h2>
-    {/if}
+          {table_weight_unit}
+        </button>
+      {:else}
+        <h2>__</h2>
+      {/if}
+    </div>
   </div>
   <div class="reps_numbers_wrapper">
     <h4 class="reps_numbers_title">Reps</h4>
     <ul class="reps_numbers">
       {#each REP_COUNT_ARRAY as count}
-        <span
+        <button
           on:click={() => update_rep_count(count)}
           class="reps_number_btn"
           class:active={$rpeContext.rep_count === count}
         >
           {count}
-        </span>
+        </button>
       {/each}
     </ul>
   </div>
@@ -121,7 +127,7 @@
   </div>
 </div>
 
-<style>
+<style lang="scss">
   .rpe_chart_output {
     margin-top: 8px;
   }
@@ -162,6 +168,7 @@
     padding: 12px;
     border-radius: 3px;
     color: var(--off-white);
+    background-color: transparent;
   }
   .rpe_chart_output .reps_numbers_wrapper .reps_numbers .reps_number_btn:hover {
     color: var(--purple-50);
@@ -184,8 +191,21 @@
     text-align: center;
   }
   .rpe_chart_output .estimate_one_rm_wrapper {
+    color: var(--neutral-60);
     display: flex;
     justify-content: space-between;
+    align-items: center;
+  }
+  .rpe_chart_output .estimate_one_rm_wrapper .one_rm_title {
+    margin: 0;
+  }
+  .rpe_chart_output .estimate_one_rm_wrapper .one_rm {
+    display: flex;
+  }
+  .rpe_chart_output .estimate_one_rm_wrapper .one_rm_btn {
+    margin-left: 12px;
+    color: var(--off-white);
+    background-color: var(--purple-50);
   }
 
   @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {

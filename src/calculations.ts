@@ -3,7 +3,7 @@ import type {
   RpeChart,
   RpeContext,
   TWeightUnit,
-} from "./appTypes";
+} from "./types";
 import { KILO_PLATES_MAP, POUND_PLATES_MAP, RPE_CHART } from "./constants";
 
 export const compute_1rm = ({
@@ -13,13 +13,13 @@ export const compute_1rm = ({
 }: Pick<RpeContext, "rpe_level" | "rep_count_estimated_one_rm" | "weight">) =>
   (Number(weight) / RPE_CHART[rep_count_estimated_one_rm][rpe_level]) * 100;
 
-export const compute_rpe_chart = ({
+export function compute_rpe_chart ({
   rep_count,
   rep_count_estimated_one_rm,
   rpe_level,
   weight,
   weight_increment,
-}: RpeContext) => {
+}: RpeContext) {
   const oneRM = compute_1rm({ rep_count_estimated_one_rm, rpe_level, weight });
   const estimated_one_rm =
     weight_increment * Math.floor(oneRM / weight_increment);

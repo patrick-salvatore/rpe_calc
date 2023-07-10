@@ -1,4 +1,4 @@
-<script type="ts">
+<script lang="ts">
   import { rpeContext, defaultRpeContext } from "./providers/form";
   import { calculate_plate_scheme, compute_rpe_chart } from "./calculations";
   import {
@@ -30,24 +30,12 @@
     <label class="rpe_form_cell--label" for="weight">Weight</label>
     <input
       required
-      on:input={block_char_input}
       bind:value={$rpeContext.weight}
       class="cell"
       min="0"
       maxlength="3"
       pattern="[0-9]+"
     />
-    <div class="rpe_form_cell--weight-units">
-      {#each WEIGHT_UNIT_ARRAY as unit}
-        <span
-          class="reps_number_btn"
-          class:active={$rpeContext.unit === unit}
-          on:click={() => ($rpeContext.unit = unit)}
-        >
-          {unit}
-        </span>
-      {/each}
-    </div>
   </div>
   <div class="joined_cells">
     <div class="rpe_form_cell weight_inc__wrapper">
@@ -56,7 +44,7 @@
       >
       <div class="reps_number_btn__wrapper">
         {#each WEIGHT_INC_ARRAY as inc}
-          <span
+          <button
             class="reps_number_btn"
             class:active={$rpeContext.weight_increment === inc}
             on:click={() => {
@@ -64,7 +52,7 @@
             }}
           >
             {inc}
-          </span>
+          </button>
         {/each}
       </div>
     </div>
@@ -104,7 +92,7 @@
   </div>
 </div>
 
-<style>
+<style lang="scss">
   .rpe_inputs_form .rpe_inputs_title {
     font-size: 24px;
     margin-bottom: 12px;
@@ -131,6 +119,7 @@
     padding: 7px;
     border-radius: 3px;
     color: var(--off-white);
+    background-color: transparent;
   }
   .rpe_inputs_form
     .joined_cells

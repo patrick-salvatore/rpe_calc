@@ -1,4 +1,4 @@
-import type { RpeContext } from "../appTypes";
+import type { RpeContext } from "../types";
 import { Writable, writable } from "svelte/store";
 
 export const defaultRpeContext: RpeContext = {

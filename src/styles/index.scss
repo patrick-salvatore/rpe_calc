@@ -59,3 +59,9 @@
   --cyan: #13cadd;
   --mud: #913b08;
 }
+
+@font-face {
+  font-family: "Inter-Roman";
+  src: local("Inter-Roman"),
+    url('/fonts/InterVar/Inter-roman.woff') format("woff"); // needs to have path relative to within /public
+}

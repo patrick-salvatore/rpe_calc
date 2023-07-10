@@ -1,4 +1,4 @@
-<script type="ts">
+<script lang="ts">
   import RpeInputs from "./rpe_chart_inputs.svelte";
   import RpeChart from "./rpe_chart.svelte";
   import Backoff from "./backoff_chart_inputs.svelte";
@@ -22,17 +22,21 @@
   <nav class="main_nav">
     <h1 class="main_nav_title">RPE Calculator</h1>
     <div class="item_wapper">
-      <span
+      <button
         class="nav_item"
         class:active={page === "rpe-calc"}
-        on:click={() => toggleDisplay("rpe-calc")}>RPE Chart</span
+        on:click={() => toggleDisplay("rpe-calc")}
       >
+        RPE Chart
+      </button>
       <span class="nav_item_divider"> | </span>
-      <span
+      <button
         class="nav_item"
         class:active={page === "backoff"}
-        on:click={() => toggleDisplay("backoff")}>Backoff Sets</span
+        on:click={() => toggleDisplay("backoff")}
       >
+        Backoff Sets
+      </button>
     </div>
   </nav>
 
@@ -44,15 +48,8 @@
   {/if}
 </main>
 
-<style type="scss">
-  @import "./style-guide/index.scss";
-
-  * {
-    &.dark-theme {
-      color: var(--neutral-60);
-      background-color: var(--dark-bg);
-    }
-  }
+<style lang="scss">
+  @import "./styles/index.scss";
 
   .app_container {
     min-height: 100vh;
@@ -68,11 +65,14 @@
     .main_nav_title {
       font-size: 2.5rem;
       margin: 0;
+      margin-bottom: 10px;
     }
 
     .nav_item {
+      background-color: transparent;
       cursor: pointer;
-
+      color: var(--neutral-60);
+      
       &.active {
         color: var(--pure-white);
       }

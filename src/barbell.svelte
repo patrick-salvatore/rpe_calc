@@ -1,4 +1,4 @@
-<script type="ts">
+<script lang="ts">
   export let plates: {
     className: string;
     type: string;
@@ -24,7 +24,7 @@
   {/each}
 </div>
 
-<style>
+<style lang='scss'>
   .PLATE {
     border-right: solid 0.5px var(--true-black);
     height: 50px;

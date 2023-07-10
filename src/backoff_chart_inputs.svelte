@@ -1,4 +1,4 @@
-<script type="ts">
+<script lang="ts">
   import {
     rpeContext,
     defaultBackoffPercent,
@@ -114,20 +114,20 @@
   <div class="backoff_tabs_form">
     <h1 class="backoff_inputs_title">Next Set Target</h1>
     <div class="backoff_tabs_wrapper">
-      <div
+      <button
         class="backoff_tab"
         class:active={active_tab === "rpe"}
         on:click={() => (active_tab = "rpe")}
       >
         <h3>RPE</h3>
-      </div>
-      <div
+      </button>
+      <button
         class="backoff_tab"
         class:active={active_tab === "percent_backoff"}
         on:click={() => (active_tab = "percent_backoff")}
       >
         <h3>% backoff</h3>
-      </div>
+      </button>
     </div>
     {#if active_tab === "rpe"}
       <div class="joined__cells">
@@ -247,18 +247,18 @@
       </div>
       <div class="output_result">
         <label for="next_set">Estimated 1RM</label>
-        <input
+        <!-- <input
           type="text"
           class="result est_1rm"
           disabled
           bind:value={output_fields.e1rm_output}
-        />
+        /> -->
       </div>
     </div>
   </div>
 </div>
 
-<style>
+<style lang="scss">
   .backoff_inputs_form .backoff_inputs_title {
     font-size: 28px;
     margin-bottom: 12px;
@@ -303,6 +303,12 @@
   .backoff_inputs_form .info_button_wrapper button .disabled {
     background-color: var(--purple-30);
     cursor: not-allowed;
+  }
+
+  .backoff_tabs_form .backoff_tab {
+    background-color: transparent;
+    cursor: pointer;
+    color: var(--neutral-60);
   }
 
   .backoff_tabs_form .backoff_inputs_title {
