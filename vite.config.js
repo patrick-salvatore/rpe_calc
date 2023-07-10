@@ -14,6 +14,7 @@ import pkg from "./package.json";
 import tsconfig from "./tsconfig.json";
 
 const production = process.env.NODE_ENV === "production";
+
 const config = defineConfig({
   plugins: [
     svelte({
